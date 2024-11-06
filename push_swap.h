@@ -6,7 +6,7 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 20:39:16 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/10/30 20:00:16 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/06 21:27:25 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 
 # include "libft/libft.h"
 
-typedef struct s_node
-{
-	int	x;
-	struct s_node	*next;
-}	t_node;
+#define MAX_INT	2147483647
+#define MIN_INT -2147483648
+#define ERROR_INT 9999999999
 
 typedef struct s_stack
 {
-	int			t;
-	int			i;
-	size_t		len;
-	char	**str;
-	char		*x;
-	char		*y;
-	t_node	*top;
+	int				t;
+	int				i;
+	int				boolean;
+	long			result;
+	char			**str;
+	char			*x;
+	char			*y;
+	struct s_stack	*next;
+	struct s_stack	*prev;
 }	t_stack;
 
 
