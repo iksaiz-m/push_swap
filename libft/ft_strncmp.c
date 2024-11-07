@@ -6,7 +6,7 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:53:49 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/10/15 13:30:58 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/06 21:44:37 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 // int main ()
 // {
 // 	int	n = 6;
-	
+
 //     char s1[] = "232";
 //     char s2[] = "232";
 

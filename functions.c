@@ -6,11 +6,12 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:43:27 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/06 21:36:59 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/07 20:20:34 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft/libft.h"
 
 void	sa(t_stack **stack_a)
 {

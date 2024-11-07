@@ -6,7 +6,7 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 20:39:16 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/06 21:27:25 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/07 20:10:38 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 
 # include "libft/libft.h"
 
-#define MAX_INT	2147483647
-#define MIN_INT -2147483648
-#define ERROR_INT 9999999999
+# define MAX_INT	2147483647
+# define MIN_INT -2147483648
+# define ERROR_INT 9999999999
 
 typedef struct s_stack
 {
 	int				t;
 	int				i;
+	long			index;
+	long			num;
 	int				boolean;
 	long			result;
 	char			**str;
@@ -31,6 +33,5 @@ typedef struct s_stack
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }	t_stack;
-
 
 #endif // PUSH_SWAP_H
