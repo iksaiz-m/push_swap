@@ -6,7 +6,7 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:56:22 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/07 20:39:31 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/08 21:41:33 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,12 +170,56 @@ char	**handle_multiple_arguments(int ac, char **av, t_stack *a)
 	}
 	return (a->str);
 }
+long	*create_long(char **str, int i)
+{
+	long ii;
+	long *nlist;
+	
+	ii = 0;
+	nlist = (long *)ft_calloc(i, sizeof(long));
+	if (!nlist)
+		return (NULL);
+	while (ii < i)
+	{
+		nlist[ii] = ft_long_atoi(str[ii], 0);
+		ii++;
+	}
+	ft_free(str);
+	return (nlist);
+}
+void	charge_nlist(t_stack *a, long *nlist, int i)
+{
+	t_stack	*last;
+	t_stack	*new;
+
+	last = (void *)0;
+	a->i = 0;
+	while (a->i < i)
+	{
+		new = malloc(sizeof (struct s_list));
+		if (!new)
+			return ;
+		new->num = nlist[a->i];
+		new->index = 0;
+		new->next = (void *)0;
+		if (last == (void *)0)
+			a = new;
+		else
+			last->next = new;
+		last = new;
+		a->i++;
+	}
+	free(nlist);
+	free(new);
+}
 
 int	main(int ac, char **av)
 {
 	t_stack		a;
 	t_stack		b;
-
+	long		*nlist;
+	
+	a.i = 0;
 	initialize_stacks(&a, &b);
 	if (ac == 1)
 		return (1);
@@ -184,8 +228,11 @@ int	main(int ac, char **av)
 	if (ac > 2)
 		handle_multiple_arguments(ac, av, &a);
 	handle_repetition(a.str);
-	for(int x = 0; a.str[x] != NULL; x++)
-			ft_printf("Check string: %s\n", a.str[x]);
-	ft_free(a.str);
+	while (a.str[a.i] != NULL)
+		a.i++;
+	nlist = create_long(a.str, a.i);
+	charge_nlist(&a, nlist, a.i);
+	// ft_free(a.str);
+	//free(nlist);
 	return (0);
 }

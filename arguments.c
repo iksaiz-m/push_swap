@@ -6,7 +6,7 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:19:30 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/07 20:19:49 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/07 21:08:15 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ char	**handle_multiple_arguments(int ac, char **av, t_stack *a)
 		check_argument(av[a->i]);
 	a->i = 0;
 	a->str = (char **)ft_calloc((ac), sizeof(char *));
+	if (!a)
+		return (NULL);
 	while(++a->i < ac)
 	{
 		if (ft_multiple_num(av[a->i], ' ') > 1)

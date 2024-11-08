@@ -6,14 +6,14 @@
 #    By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 21:24:04 by iksaiz-m          #+#    #+#              #
-#    Updated: 2024/10/27 20:36:05 by iksaiz-m         ###   ########.fr        #
+#    Updated: 2024/11/08 21:30:42 by iksaiz-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 LIBFT_DIR    = libft/
 LIBFT        = $(LIBFT_DIR)libft.a
 HEADERS      = -I $(LIBFT_DIR)
-CFLAGS       = -Wall -Wextra -Werror -O3 -g3
+CFLAGS       = -Wall -Wextra -Werror -g -O3 -g3
 
 NAME         = push_swap
 RM           = rm -rf
