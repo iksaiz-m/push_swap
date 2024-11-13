@@ -6,16 +6,28 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:43:27 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/07 20:20:34 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/13 20:19:00 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
+int	ft_lstsize(t_list *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst != NULL)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
+}
 void	sa(t_stack **stack_a)
 {
-
+    if(ft_lstsize > 1)
     ft_printf("sa\n");
 }
 
