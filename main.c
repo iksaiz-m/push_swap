@@ -6,18 +6,18 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:56:22 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/13 21:58:04 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/14 21:50:11 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-static void	initialize_stacks(t_stack *a, t_stack *b)
-{
-	a = NULL;
-	b = NULL;
-}
+// static void	initialize_stacks(t_stack **a, t_stack **b)
+// {
+// 	a = NULL;
+// 	b = NULL;
+// }
 static void	ft_free(char **a)
 {
 	size_t	t;
@@ -127,60 +127,65 @@ void	check_argument(char *av)
 			break;
 	}
 }
-char	**handle_one_argument(char *av, t_stack *a)
+char	**handle_one_argument(char *av)
 {
-	a->t = 0;
+	int		t;
+	char	**str;
+
+	t = 0;
 	check_argument(av);
-	a->str = ft_split(av, ' ');
-	while (a->str[a->t] != NULL)
+	str = ft_split(av, ' ');
+	while (str[t] != NULL)
 	{
-		if (ft_long_atoi(a->str[a->t], 0) == ERROR_INT)
+		if (ft_long_atoi(str[t], 0) == ERROR_INT)
 		{
-			ft_free(a->str);
+			ft_free(str);
 			error();
 		}
-		a->t++;
+		t++;
 	}
-	return (a->str);
+	return (str);
 }
 
-char	**handle_multiple_arguments(int ac, char **av, t_stack *a)
+char	**handle_multiple_arguments(int ac, char **av)
 {
-	a->i = 0;
-	a->t = 0;
-	while(++a->i < ac)
+	t_stack	xxx;
+
+	xxx.i = 0;
+	xxx.t = 0;
+	while(++xxx.i < ac)
 	{
-		check_argument(av[a->i]);
-		if (ft_multiple_num(av[a->i], ' ') > 1)
+		check_argument(av[xxx.i]);
+		if (ft_multiple_num(av[xxx.i], ' ') > 1)
 			error();
 	}
-	a->i = 0;
-	a->str = (char **)ft_calloc((ac + 1), sizeof(char *));
-	if (!a->str)
+	xxx.i = 0;
+	xxx.str = (char **)ft_calloc((ac + 1), sizeof(char *));
+	if (!xxx.str)
 		return (NULL);
-	while(++a->i < ac)
+	while(++xxx.i < ac)
 	{
-		a->str[a->t] = ft_strdup(av[a->i]);
-		if (ft_long_atoi(a->str[a->t], 0) == ERROR_INT)
+		xxx.str[xxx.t] = ft_strdup(av[xxx.i]);
+		if (ft_long_atoi(xxx.str[xxx.t], 0) == ERROR_INT)
 		{
-			ft_free(a->str);
+			ft_free(xxx.str);
 			error();
 		}
-	a->t++;
+	xxx.t++;
 	}
-	return (a->str);
+	return (xxx.str);
 }
 
-void	charge_nlist(t_stack *a, long *nlist, int size)
+void	charge_nlist(t_stack **a, long *nlist, int size)
 {
 	t_stack	*last;
 	t_stack	*new;
-	long	i;
 	t_stack	*temporal;
+	long	i;
 
 	last = NULL;
 	i = 0;
-	//new = NULL;
+	new = NULL;
 	while (i < size)
 	{
 		new = malloc(sizeof (struct s_stack));
@@ -190,24 +195,24 @@ void	charge_nlist(t_stack *a, long *nlist, int size)
 		new->index = 0;
 		new->next = (void *)0;
 		if (last == (void *)0)
-			a = new;
+			*a = new;
 		else
 			last->next = new;
 		last = new;
 		i++;
 	}
-	free(nlist);
-	while (a != NULL)
+	while (*a)
 	{
-		temporal = (a)->next;
-		ft_printf("valor numero lista: %d\n", a->num);
-		free (a);
-		a = temporal;
+		temporal = ((*a))->next;
+		ft_printf("valor numero lista: %d\n", (*a)->num);
+		free (*a);
+		*a = temporal;
 	}
-	//free(new);
+	free(nlist);
+
 }
 
-long	*create_long(t_stack *a, char **str, int size)
+long	*create_long(t_stack **a, char **str, int size)
 {
 	long i;
 	long *nlist;
@@ -226,39 +231,43 @@ long	*create_long(t_stack *a, char **str, int size)
 	return (nlist);
 }
 
-void	check_list(t_stack *a)
-{
-	// t_stack	*temporal;
-	
-	ft_printf("valor a.i: %d\n", a->i);
-	// while (a != NULL)
-	// {
-	// 	temporal = (a)->next;
-	// 	ft_printf("valor numero lista: %d\n", a->num);
-	// 	//free (a);
-	// 	a = temporal;
-	// }
-}
+// void	check_list(t_stack **a)
+// {
+// 	t_stack	*temporal;
+
+// 	while (a != NULL)
+// 	{
+// 		temporal = ((*a))->next;
+// 		ft_printf("valor numero lista: %d\n", (*a)->num);
+// 		free (a);
+// 		a = &temporal;
+// 	}
+// }
 
 int	main(int ac, char **av)
 {
-	t_stack		a;
-	t_stack		b;
-	
-	initialize_stacks(&a, &b);
+	t_stack		*a;
+	//t_stack		*b;
+	char		**str;
+	int			i;
+
+	i = 0;
+	a = NULL;
+	str = NULL;
+	// b = NULL;
 	if (ac == 1)
 		return (1);
 	if (ac == 2)
-		handle_one_argument(av[1], &a);
+		str = handle_one_argument(av[1]);
 	if (ac > 2)
-		handle_multiple_arguments(ac, av, &a);
-	handle_repetition(a.str);
-	a.i = 0;
-	while (a.str[a.i] != NULL)
-		a.i++;
-	create_long(&a, a.str, a.i);
-	check_list(&a);
-	// ft_free(a.str);
+		str = handle_multiple_arguments(ac, av);
+	handle_repetition(str);
+	//a->i = 0;
+	while (str[i])
+		i++;
+	create_long(&a, str, i);
+	//check_list(&a);
+	//ft_free(str);
 	return (0);
 }
 
