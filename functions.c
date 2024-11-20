@@ -6,79 +6,108 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:43:27 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/13 20:19:00 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/20 21:36:29 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_sa(t_stack **a)
 {
-	int	i;
-
-	i = 0;
-	while (lst != NULL)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
-}
-void	sa(t_stack **stack_a)
-{
-    if(ft_lstsize > 1)
-    ft_printf("sa\n");
+	t_stack	*tmp;
+	if (!*a || !((*a)->next))
+		return ;
+	tmp = *a;
+	*a = (*a)->next;
+	tmp->next = (*a)->next;
+	(*a)->next = tmp;
+	ft_printf("sa\n");
 }
 
-void	sb(t_stack **stack_a)
+void	ft_sb(t_stack **b)
 {
-
-    ft_printf("sb\n");
+	t_stack	*tmp;
+	if (!*b || !((*b)->next))
+		return ;
+	tmp = *b;
+	*b = (*b)->next;
+	tmp->next = (*b)->next;
+	(*b)->next = tmp;
+	ft_printf("sb\n");
 }
-void	ss(t_stack **stack_a)
+void	ft_ss(t_stack **a, t_stack **b)
 {
-
-    //call functions sa&sb
+    if(!a || !(*a)->next)
+    	return ;
+        //call functions sa&sb
+    ft_printf("ss\n");
 }
 
-void	pa(t_stack **stack_a)
+void	ft_pa(t_stack **a, t_stack **b)
 {
-    ft_printf("pa\n");
-}
-
-void	pb(t_stack **stack_a)
-{
+	t_stack	*tmp;
+	if (!*b)
+    	return ;
+	tmp = *b;
+	*b = (*b)->next;
+	tmp->next = *a;
+    *a = tmp;
     ft_printf("pb\n");
 }
 
-void	ra(t_stack **stack_a)
+void	ft_pb(t_stack **a, t_stack **b)
 {
-    ft_printf("ra\n");
-
+    t_stack	*tmp;
+	if (!*a)
+    	return ;
+	tmp = *a;
+	*a = (*a)->next;
+	tmp->next = *b;
+    *b = tmp;
+    ft_printf("pb\n");
 }
 
-void	rb(t_stack **stack_a)
+void	ft_ra(t_stack **a)
 {
+	if (!*a || !((*a)->next))
+    	return ;
+    ft_printf("ra\n");
+}
+
+void	ft_rb(t_stack **a)
+{
+	if (!*a || !((*a)->next))
+    	return ;
     ft_printf("rb\n");
 }
 
-void	rr(t_stack **stack_a)
+void	ft_rr(t_stack **a)
 {
-    //call functions ra&rb
+	if (!*a || !((*a)->next))
+    	return ;
+        //call functions ra&rb
+    ft_printf("rr\n");
 }
 
-void	rra(t_stack **stack_a)
+void	ft_rra(t_stack **a)
 {
+    if(!a || !(*a)->next)
+    	return ;
     ft_printf("rra\n");
 }
 
-void	rrb(t_stack **stack_a)
+void	ft_rrb(t_stack **a)
 {
+    if(!a || !(*a)->next)
+    	return ;
     ft_printf("rrb\n");
 }
 
-void	rrr(t_stack **stack_a)
+void	ft_rrr(t_stack **a)
 {
-    //call functions rra&rrb
+    if(!a || !(*a)->next)
+    	return ;
+        //call functions rra&rrb
+    ft_printf("rrr\n");
 }

@@ -6,18 +6,13 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:56:22 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/14 21:50:11 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/20 21:52:15 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-// static void	initialize_stacks(t_stack **a, t_stack **b)
-// {
-// 	a = NULL;
-// 	b = NULL;
-// }
 static void	ft_free(char **a)
 {
 	size_t	t;
@@ -180,7 +175,7 @@ void	charge_nlist(t_stack **a, long *nlist, int size)
 {
 	t_stack	*last;
 	t_stack	*new;
-	t_stack	*temporal;
+	// t_stack	*temporal;
 	long	i;
 
 	last = NULL;
@@ -201,15 +196,14 @@ void	charge_nlist(t_stack **a, long *nlist, int size)
 		last = new;
 		i++;
 	}
-	while (*a)
-	{
-		temporal = ((*a))->next;
-		ft_printf("valor numero lista: %d\n", (*a)->num);
-		free (*a);
-		*a = temporal;
-	}
+	// while (*a)
+	// {
+	// 	temporal = ((*a))->next;
+	// 	ft_printf("primer valor numero lista: %d\n", (*a)->num);
+	// 	//free (*a);
+	// 	*a = temporal;
+	// }
 	free(nlist);
-
 }
 
 long	*create_long(t_stack **a, char **str, int size)
@@ -231,30 +225,83 @@ long	*create_long(t_stack **a, char **str, int size)
 	return (nlist);
 }
 
-// void	check_list(t_stack **a)
-// {
-// 	t_stack	*temporal;
+void	ft_sa(t_stack **a)
+{
+	t_stack	*tmp;
+	if (!*a || !((*a)->next))
+		return ;
+	tmp = *a;
+	*a = (*a)->next;
+	tmp->next = (*a)->next;
+	(*a)->next = tmp;
+	ft_printf("sa\n");
+}
 
-// 	while (a != NULL)
-// 	{
-// 		temporal = ((*a))->next;
-// 		ft_printf("valor numero lista: %d\n", (*a)->num);
-// 		free (a);
-// 		a = &temporal;
-// 	}
-// }
+void	ft_pb(t_stack **a, t_stack **b)
+{
+    t_stack	*tmp;
+	if (!*a)
+    	return ;
+	tmp = *a;
+	*a = (*a)->next;
+	tmp->next = *b;
+    *b = tmp;
+    ft_printf("pb\n");
+}
+
+	
+void checkpb(t_stack **b)
+{
+	t_stack *temporal;
+	t_stack **x;
+	x = b;
+	while(*x)
+    {
+		temporal = ((*x))->next;
+		ft_printf("Valor stack b: %d\n", (*x)->num);
+		*x = temporal;
+		//free (*a);
+    }
+	b = x;
+}
+
+void	ft_pa(t_stack **a, t_stack **b)
+{
+	t_stack	*tmp;
+	if (!*b)
+    	return ;
+	tmp = *b;
+	*b = (*b)->next;
+	tmp->next = *a;
+    *a = tmp;
+    ft_printf("pa\n");
+}
+	
+void checkpa(t_stack **a)
+{
+	t_stack *temporal;
+	t_stack **j;
+	j = a;
+	while(*j)
+    {
+		temporal = ((*j))->next;
+		ft_printf("Valor stack a: %d\n", (*j)->num);
+		*j = temporal;
+		//free (*a);
+    }
+}
 
 int	main(int ac, char **av)
 {
 	t_stack		*a;
-	//t_stack		*b;
+	t_stack		*b;
 	char		**str;
 	int			i;
 
 	i = 0;
 	a = NULL;
 	str = NULL;
-	// b = NULL;
+	b = NULL;
 	if (ac == 1)
 		return (1);
 	if (ac == 2)
@@ -262,24 +309,17 @@ int	main(int ac, char **av)
 	if (ac > 2)
 		str = handle_multiple_arguments(ac, av);
 	handle_repetition(str);
-	//a->i = 0;
 	while (str[i])
 		i++;
 	create_long(&a, str, i);
-	//check_list(&a);
-	//ft_free(str);
+	//ft_sa(&a);
+	ft_pb(&a, &b);
+	ft_pb(&a, &b);
+	//checkpb(&b);
+	ft_pb(&a, &b);
+	ft_pb(&a, &b);
+	ft_pa(&a, &b);
+	//ft_pa(&a, &b);
+	checkpa(&a);
 	return (0);
 }
-
-// void	check_list(t_stack *a)
-// {
-// 	t_stack	*temporal;
-
-// 	while (a != NULL)
-// 	{
-// 		temporal = (a)->next;
-// 		ft_printf("valor numero lista: %d\n", a->num);
-// 		free (a);
-// 		a = temporal;
-// 	}
-// }
