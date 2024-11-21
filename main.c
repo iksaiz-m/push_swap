@@ -6,7 +6,7 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:56:22 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/20 21:52:15 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/21 22:09:08 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,6 +291,84 @@ void checkpa(t_stack **a)
     }
 }
 
+void	ft_ra(t_stack **a)
+{
+	// t_stack	*tmp;
+	// t_stack	*first;
+	// t_stack	*last;
+	// int	i;
+	// int t;
+	// i = 0;
+	// if (!*a || !((*a)->next))
+    // 	return ;
+
+	// tmp = *a;
+	// first = tmp;
+	// while (tmp != NULL)
+	// {
+	// 	i++;
+	// 	tmp = tmp->next;
+	// }
+	// t = i - 1;
+	// while (t > 0)
+	// {
+	// 	t--;
+	// 	first = first->next;
+	// }
+	// last = first;
+	// first = *a;
+	// *a = (*a)->next;
+	// last->next = first;
+	// first->next = NULL;
+	t_stack	*tmp;
+	t_stack	*last;
+	if (!*a || !((*a)->next))
+    	return ;
+	tmp = *a;
+	last = NULL;
+	while (tmp->next != NULL)
+        tmp = tmp->next;
+	last = tmp;
+	tmp = *a;
+	*a = (*a)->next;
+	last->next = tmp;
+	tmp->next = NULL;
+    ft_printf("ra\n");
+}
+
+void	ft_rra(t_stack **a)
+{
+    t_stack	*tmp;
+	t_stack	*last;
+	t_stack *tmp_prev;
+	if (!*a || !((*a)->next))
+    	return ;
+	tmp = *a;
+	last = NULL;
+	tmp_prev = tmp;
+	while (tmp->next != NULL)
+	{
+		tmp_prev->prev = tmp;
+        tmp = tmp->next;
+	}
+	last = tmp;
+	tmp = *a;
+	*a = last;
+	(*a)->next = tmp;
+	tmp_prev = tmp_prev->prev;
+	tmp_prev->next = NULL;
+	
+	//tmp_prev->next = NULL;
+	//tmp->next = NULL;
+
+	// last = tmp;
+	// tmp = *a;
+	// *a = (*a)->next;
+	// last->next = tmp;
+	// tmp->next = NULL;
+    ft_printf("rra\n");
+}
+
 int	main(int ac, char **av)
 {
 	t_stack		*a;
@@ -313,12 +391,14 @@ int	main(int ac, char **av)
 		i++;
 	create_long(&a, str, i);
 	//ft_sa(&a);
-	ft_pb(&a, &b);
-	ft_pb(&a, &b);
-	//checkpb(&b);
-	ft_pb(&a, &b);
-	ft_pb(&a, &b);
-	ft_pa(&a, &b);
+	// ft_pb(&a, &b);
+	// ft_pb(&a, &b);
+	// checkpb(&b);
+	// ft_pb(&a, &b);
+	//ft_pb(&a, &b);
+	// ft_pa(&a, &b);
+	// ft_pa(&a, &b);
+	ft_rra(&a);
 	//ft_pa(&a, &b);
 	checkpa(&a);
 	return (0);

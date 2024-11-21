@@ -6,7 +6,7 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:43:27 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/20 21:36:29 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/21 20:58:49 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_pa(t_stack **a, t_stack **b)
 	*b = (*b)->next;
 	tmp->next = *a;
     *a = tmp;
-    ft_printf("pb\n");
+    ft_printf("pa\n");
 }
 
 void	ft_pb(t_stack **a, t_stack **b)
@@ -70,15 +70,38 @@ void	ft_pb(t_stack **a, t_stack **b)
 
 void	ft_ra(t_stack **a)
 {
+	t_stack	*tmp;
+	t_stack	*last;
 	if (!*a || !((*a)->next))
     	return ;
+	tmp = *a;
+	last = NULL;
+	while (tmp->next != NULL)
+        tmp = tmp->next;
+	last = tmp;
+	tmp = *a;
+	*a = (*a)->next;
+	last->next = tmp;
+	tmp->next = NULL;
     ft_printf("ra\n");
 }
 
-void	ft_rb(t_stack **a)
+
+void	ft_rb(t_stack **b)
 {
-	if (!*a || !((*a)->next))
+	t_stack	*tmp;
+	t_stack	*last;
+	if (!*b || !((*b)->next))
     	return ;
+	tmp = *b;
+	last = NULL;
+	while (tmp->next != NULL)
+        tmp = tmp->next;
+	last = tmp;
+	tmp = *b;
+	*b = (*b)->next;
+	last->next = tmp;
+	tmp->next = NULL;
     ft_printf("rb\n");
 }
 
@@ -92,8 +115,25 @@ void	ft_rr(t_stack **a)
 
 void	ft_rra(t_stack **a)
 {
-    if(!a || !(*a)->next)
+    t_stack	*tmp;
+	t_stack	*last;
+	if (!*a || !((*a)->next))
     	return ;
+	tmp = *a;
+	last = NULL;
+	while (tmp->next != NULL)
+        tmp = tmp->next;
+	last = tmp;
+	tmp = *a;
+	*a = last;
+	(*a)->next = tmp;
+	tmp->next = NULL;
+
+	// last = tmp;
+	// tmp = *a;
+	// *a = (*a)->next;
+	// last->next = tmp;
+	// tmp->next = NULL;
     ft_printf("rra\n");
 }
 
