@@ -6,7 +6,7 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 20:39:16 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/22 19:02:25 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:50:09 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,12 @@ void	ft_rrr(t_stack **a, t_stack **b);
 void	ft_swap(t_stack **swap);
 void	ft_rotate(t_stack **rotate);
 void	ft_revrotate(t_stack **revrotate);
+
+//sort//
+int		ft_sorted(t_stack **a);
+void	ft_sort3_num(t_stack **a);
+int		ft_get_smaller(t_stack **a);
+void	ft_sort4_num(t_stack **a, t_stack **b);
+void	ft_sort5_num(t_stack **a, t_stack **b);
 
 #endif // PUSH_SWAP_H
