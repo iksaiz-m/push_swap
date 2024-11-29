@@ -6,7 +6,7 @@
 #    By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 21:24:04 by iksaiz-m          #+#    #+#              #
-#    Updated: 2024/11/25 21:47:36 by iksaiz-m         ###   ########.fr        #
+#    Updated: 2024/11/29 21:34:11 by iksaiz-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS       = -Wall -Wextra -Werror -g -O3 -g3
 NAME         = push_swap
 RM           = rm -rf
 SRC = main.c arguments.c utils.c fillstack.c functions.c functions2.c \
-	functions3.c functions4.c hardcodesort.c
+	functions3.c functions4.c hardcodesort.c sortbignums.c
 
 OBJS = $(SRC:.c=.o)
 

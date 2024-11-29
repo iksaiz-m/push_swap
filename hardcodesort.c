@@ -6,31 +6,23 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:46:30 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/25 21:48:12 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/29 21:39:02 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-int	ft_sorted(t_stack **a)
+int	ft_sorted(t_stack *stack)
 {
-	t_stack	*tmp;
-	t_stack	*tmp2;
-
-	tmp = *a;
-	tmp2 = tmp->next;
-	while (tmp2 != NULL)
+	while (stack->next)
 	{
-		if (tmp->num > tmp2->num)
+		if (stack->num > stack->next->num)
 			return (0);
-		else
-		{
-			tmp = tmp->next;
-			tmp2 = tmp->next;
-		}
+		stack = stack->next;
 	}
 	return (1);
+	
 }
 
 void	ft_sort3_num(t_stack **a)
@@ -49,7 +41,7 @@ void	ft_sort3_num(t_stack **a)
 	else if (tmp->num < tmp2->num && tmp2->num > tmp3->num)
 	{
 		ft_rra(a);
-		if (!ft_sorted(a))
+		if (!ft_sorted(*a))
 			ft_sa(a);
 	}
 	if (tmp->num > tmp2->num && tmp2->num > tmp3->num)
@@ -59,7 +51,7 @@ void	ft_sort3_num(t_stack **a)
 	}
 }
 
-int	ft_get_smaller(t_stack **a)
+static int	ft_get_smaller(t_stack **a)
 {
 	t_stack	*tmp;
 	t_stack	*tmp2;
@@ -94,7 +86,7 @@ void	ft_sort4_num(t_stack **a, t_stack **b)
 	}
 	if (ft_get_smaller(a) == 3)
 		ft_rra(a);
-	if (!ft_sorted(a))
+	if (!ft_sorted(*a))
 	{
 		ft_pb(a, b);
 		ft_sort3_num(a);
@@ -118,7 +110,7 @@ void	ft_sort5_num(t_stack **a, t_stack **b)
 	}
 	if (ft_get_smaller(a) == 4)
 		ft_rra(a);
-	if (!ft_sorted(a))
+	if (!ft_sorted(*a))
 	{
 		ft_pb(a, b);
 		ft_sort4_num(a, b);

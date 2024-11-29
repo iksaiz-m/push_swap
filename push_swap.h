@@ -6,7 +6,7 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 20:39:16 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/25 21:50:09 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/29 21:39:58 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
+# include "limits.h"
 
 # define MAX_INT	2147483647
 # define MIN_INT -2147483648
@@ -23,6 +24,8 @@ typedef struct s_stack
 {
 	int				t;
 	int				i;
+	int				cost;
+	int				cheapest;
 	long			index;
 	long			num;
 	int				boolean;
@@ -32,13 +35,13 @@ typedef struct s_stack
 	char			*y;
 	struct s_stack	*next;
 	struct s_stack	*prev;
+	struct s_stack	*target;
 }	t_stack;
 
 //arguments check//
 char	**handle_multiple_arguments(int ac, char **av);
 int		handle_repetition(char **str);
 char	**handle_one_argument(char *av);
-void	check_argument(char *av);
 
 //fill stack//
 long	*create_long(t_stack **a, char **str, int size);
@@ -48,6 +51,7 @@ void	charge_nlist(t_stack **a, long *nlist, int size);
 void	ft_free(char **a);
 void	error(void);
 long	ft_long_atoi(const char *str, int i);
+int	checklenght(t_stack *a);
 size_t	ft_multiple_num(char const *s, char c);
 
 //rules//
@@ -67,10 +71,13 @@ void	ft_rotate(t_stack **rotate);
 void	ft_revrotate(t_stack **revrotate);
 
 //sort//
-int		ft_sorted(t_stack **a);
+int		ft_sorted(t_stack *stack);
 void	ft_sort3_num(t_stack **a);
-int		ft_get_smaller(t_stack **a);
+//int		ft_get_smaller(t_stack **a);
 void	ft_sort4_num(t_stack **a, t_stack **b);
 void	ft_sort5_num(t_stack **a, t_stack **b);
+void	ft_sortbignums(t_stack **a, t_stack **b);
 
 #endif // PUSH_SWAP_H
+
+//static void	check_argument(char *av);

@@ -6,14 +6,14 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 20:19:30 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/22 18:17:19 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/29 19:26:53 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-void	check_argument(char *av)
+static void	check_argument(char *av)
 {
 	t_stack	p;
 
