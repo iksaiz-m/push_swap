@@ -6,29 +6,45 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 19:20:03 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/22 19:22:31 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/30 21:22:20 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-void	ft_rotate(t_stack **rotate)
+// void	ft_rotate(t_stack **rotate)
+// {
+// 	t_stack	*tmp;
+// 	t_stack	*last;
+
+// 	if (!*rotate || !((*rotate)->next))
+// 		return ;
+// 	tmp = *rotate;
+// 	last = NULL;
+// 	while (tmp->next != NULL)
+// 		tmp = tmp->next;
+// 	last = tmp;
+// 	tmp = *rotate;
+// 	*rotate = (*rotate)->next;
+// 	last->next = tmp;
+// 	tmp->next = NULL;
+// }
+
+static void	ft_rotate(t_stack **stack)
 {
-	t_stack	*tmp;
 	t_stack	*last;
 
-	if (!*rotate || !((*rotate)->next))
+	if (!*stack || !(*stack)->next)
 		return ;
-	tmp = *rotate;
-	last = NULL;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	last = tmp;
-	tmp = *rotate;
-	*rotate = (*rotate)->next;
-	last->next = tmp;
-	tmp->next = NULL;
+	last = *stack;
+	while (last->next)
+		last = last->next;
+	last->next = *stack;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	last->next->prev = last;
+	last->next->next = NULL;
 }
 
 void	ft_ra(t_stack **a)

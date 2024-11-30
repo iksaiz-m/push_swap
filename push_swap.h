@@ -6,7 +6,7 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 20:39:16 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/29 21:39:58 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/30 21:44:57 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 # include "limits.h"
+# include <stdbool.h>
 
 # define MAX_INT	2147483647
 # define MIN_INT -2147483648
@@ -25,6 +26,7 @@ typedef struct s_stack
 	int				t;
 	int				i;
 	int				cost;
+	int				above_media;
 	int				cheapest;
 	long			index;
 	long			num;
@@ -51,7 +53,7 @@ void	charge_nlist(t_stack **a, long *nlist, int size);
 void	ft_free(char **a);
 void	error(void);
 long	ft_long_atoi(const char *str, int i);
-int	checklenght(t_stack *a);
+int		checklenght(t_stack *stack);
 size_t	ft_multiple_num(char const *s, char c);
 
 //rules//
@@ -67,16 +69,26 @@ void	ft_rra(t_stack **a);
 void	ft_rrb(t_stack **b);
 void	ft_rrr(t_stack **a, t_stack **b);
 void	ft_swap(t_stack **swap);
-void	ft_rotate(t_stack **rotate);
+// void	ft_rotate(t_stack **rotate);
 void	ft_revrotate(t_stack **revrotate);
 
 //sort//
-int		ft_sorted(t_stack *stack);
+bool	ft_sorted(t_stack *stack);
 void	ft_sort3_num(t_stack **a);
 //int		ft_get_smaller(t_stack **a);
 void	ft_sort4_num(t_stack **a, t_stack **b);
 void	ft_sort5_num(t_stack **a, t_stack **b);
 void	ft_sortbignums(t_stack **a, t_stack **b);
+//sort utils//
+void	set_cheapest(t_stack *stack);
+void	current_index(t_stack *stack);
+void	init_nodes_a(t_stack *a, t_stack *b);
+t_stack	*biggest(t_stack *stack);
+t_stack	*find_min(t_stack *stack);
+void	push(t_stack **stack, t_stack *top_node, char stack_name);
+t_stack	*get_cheapest(t_stack *stack);
+void	init_nodes_b(t_stack *a, t_stack *b);
+void	min_on_top(t_stack **a);
 
 #endif // PUSH_SWAP_H
 

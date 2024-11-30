@@ -6,7 +6,7 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:25:33 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/22 18:30:49 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/30 21:37:40 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,24 @@ size_t	ft_multiple_num(char const *s, char c)
 		i++;
 	}
 	return (num_word);
+}
+
+t_stack	*biggest(t_stack *stack)
+{
+	long	big;
+	t_stack	*biggest_node;
+
+	if (!stack)
+		return (NULL);
+	big = LONG_MIN;
+	while (stack)
+	{
+		if (stack->num > big)
+		{
+			big = stack->num;
+			biggest_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (biggest_node);
 }

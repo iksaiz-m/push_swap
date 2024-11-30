@@ -6,23 +6,31 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:46:30 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/29 21:39:02 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/30 21:39:56 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-int	ft_sorted(t_stack *stack)
+bool	ft_sorted(t_stack *stack)
 {
-	while (stack->next)
+	t_stack	*tmp;
+	t_stack	*tmp2;
+
+	tmp = stack;
+	tmp2 = tmp->next;
+	while (tmp2 != NULL)
 	{
-		if (stack->num > stack->next->num)
-			return (0);
-		stack = stack->next;
+		if (tmp->num > tmp2->num)
+			return (false);
+		else
+		{
+			tmp = tmp->next;
+			tmp2 = tmp->next;
+		}
 	}
-	return (1);
-	
+	return (true);
 }
 
 void	ft_sort3_num(t_stack **a)

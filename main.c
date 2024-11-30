@@ -6,7 +6,7 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:56:22 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/29 21:56:42 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/11/30 21:44:30 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	checkpa(t_stack **a)
 	}
 }
 
-int	checklenght(t_stack *a)
+int	checklenght(t_stack *stack)
 {
 	t_stack	*tmp;
 	int		i;
 
 	i = 0;
-	tmp = a;
+	tmp = stack;
 	while (tmp != NULL)
 	{
 		i++;
@@ -42,19 +42,22 @@ int	checklenght(t_stack *a)
 	return (i);
 }
 
-void	ft_order(t_stack **a, t_stack **b)
+static void	ft_order(t_stack **a, t_stack **b)
 {
+	int	size;
+
+	size = checklenght(*a);
 	if (ft_sorted(*a))
 		return ;
-	if (checklenght(*a) == 2)
+	if (size == 2)
 		ft_sa(a);
-	if (checklenght(*a) == 3)
+	if (size == 3)
 		ft_sort3_num(a);
-	if (checklenght(*a) == 4)
+	if (size == 4)
 		ft_sort4_num(a, b);
-	if (checklenght(*a) == 5)
+	if (size == 5)
 		ft_sort5_num(a, b);
-	if (checklenght(*a) > 5)
+	if (size > 5)
 		ft_sortbignums(a, b);
 }
 
@@ -79,7 +82,6 @@ int	main(int ac, char **av)
 	while (str[i])
 		i++;
 	create_long(&a, str, i);
-	ft_printf("lenght a: %d\n", checklenght(a));
 	ft_order(&a, &b);
 	checkpa(&a);
 	free(a);
