@@ -6,7 +6,7 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 19:48:56 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/30 21:37:55 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:07:48 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	min_on_top(t_stack **a)
 {
 	while ((*a)->num != find_min(*a)->num)
 	{
-		if (find_min(*a)->t)
+		if (find_min(*a)->above_media)
 			ft_ra(a);
 		else
 			ft_rra(a);

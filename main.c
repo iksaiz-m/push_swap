@@ -6,24 +6,23 @@
 /*   By: iksaiz-m <iksaiz-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 21:56:22 by iksaiz-m          #+#    #+#             */
-/*   Updated: 2024/11/30 21:44:30 by iksaiz-m         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:09:56 by iksaiz-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-void	checkpa(t_stack **a)
+static void	ft_free_stack(t_stack *a)
 {
 	t_stack	*temporal;
-	t_stack	**j;
 
-	j = a;
-	while (*j)
+	temporal = a;
+	while (a != NULL)
 	{
-		temporal = ((*j))->next;
-		ft_printf("%d ", (*j)->num);
-		*j = temporal;
+		temporal = a;
+		a = a->next;
+		free (temporal);
 	}
 }
 
@@ -83,7 +82,6 @@ int	main(int ac, char **av)
 		i++;
 	create_long(&a, str, i);
 	ft_order(&a, &b);
-	checkpa(&a);
-	free(a);
+	ft_free_stack(a);
 	return (0);
 }
